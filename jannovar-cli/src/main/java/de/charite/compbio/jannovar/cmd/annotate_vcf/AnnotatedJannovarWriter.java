@@ -143,7 +143,7 @@ public class AnnotatedJannovarWriter extends AnnotatedVariantWriter {
 			String annt = Joiner.on(":").skipNulls().join(a.ntHGVSDescription, a.aaHGVSDescription);
 			String sym = a.transcript.geneSymbol;
 			String s = String.format("%d\t%s\t%s\t%s\t%s\t%d\t%s\t%s\t%s\t%.1f\n", currentLine, effect, sym, annt,
-					chrStr, change.pos, change.ref, change.alt, gtype, qual);
+					chrStr, change.pos.pos, change.ref, change.alt, gtype, qual);
 			out.write(s);
 		}
 	}

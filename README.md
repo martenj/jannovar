@@ -1,95 +1,46 @@
 [![Build Status](https://travis-ci.org/charite/jannovar.svg?branch=master)](https://travis-ci.org/charite/jannovar)
-
+[![Documentation](https://readthedocs.org/projects/jannovar/badge/?version=master)](http://jannovar.readthedocs.org/)
 
 Jannovar
 ========
 
+Functional variant file annotation in Java. Jannovar provides a program for
+the annotation of VCF files and also exposes its functionality through a
+library API.
 
-Jannovar is a Java library and executable for annotating VCF files with
-gene/transcript-based annotations and performing simple pedigree/genotype
-filtering. If you are reading this, then preumably you have already
-downloaded the source code from github by using the command
+Jannovar is licenced under the BSD2 license.
 
-```
-$ git clone https://github.com/charite/jannovar
-```
+More information is available in the [Jannovar
+manual](http://jannovar.readthedocs.org/).
 
-The source code of Jannovar is organized as a maven project
-that integrates the test and build phases. Here are the most important commands:
+Quickstart
+----------
 
+Download binary files of the current release from our [GitHub release
+page](https://github.com/charite/jannovar/releases).
 
-* Compile all the Java classes
+After extracting the ZIP file, you can call Jannovar as follows.
 
-```
-$ cd jannovar
-$ mvn compile
-```
-
-* Build a jar archive with all the classes but no Manifest for the main class
+Download the UCSC transcripts for hg19:
 
 ```
-$ mvn jar:jar
+# java -jar jannovar-cli-0.11.jar download hg19/ucsc
+[...]
 ```
 
-* Cause all of the test classes to be executed. It is also possible
-   to run the the cobertura test-coverage pluging. To do so, you need to
-   uncomment the corresponding lines in the pom.xml file. The results of
-   test coverage analysis will then be writtten to the
-   target/site/cobertura directory.
+Annotate the example file `small.vcf`:
 
 ```
-$ mvn test
+# java -jar jannovar-cli-0.11.jar annotate data/hg19_ucsc.ser examples/small.vcf
+[...]
 ```
 
-*  Generate javadoc and output it to the directory target/site/apidocs
+Inspect the resulting annotated file:
 
 ```
-$ mvn javadoc:javadoc
+# less small.jv.vcf
 ```
 
-* Create an executable Jar file the directory "target". This command
-   makes use of the shade:shade maven goal to package a Jar file that also
-   includes the Apache CLI library, i.e., it stands on its own. It does however
-   require that all of the test phase be performed as part of the
-   build.
-
-```
-$ mvn package
-```
-
-Version
-=======
-
-Jannovar is currently at version 0.9-SNAPSHOT, meaning that we anticipate to extend the public API in the course of 2014 based on comments and suggestions from users. We do not anticipate deprecating or removing functions in the public API, but this cannot be entirely ruled out.
-
-License
-=======
-
-Jannovar is licenced under a BSD2 license.
-
-
-Copyright (c) 2013, Charite Universitätsmedizin Berlin
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-Redistributions of source code must retain the above copyright notice,
-this list of conditions and the following disclaimer.
-
-Redistributions in binary form must reproduce the above copyright
-notice, this list of conditions and the following disclaimer in the
-documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+Also see the
+[Quickstart](http://jannovar.readthedocs.org/en/develop/quickstart.html) section
+in the Jannovar manual.
